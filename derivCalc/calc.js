@@ -1,15 +1,22 @@
 const derivCalc = (equ) =>{
   const equArray = []; // array of terms in the equation
+  const equSigns = [];//array of signs of each term
   let term = ""; //individual term
   for(let i = 0; i<equ.length; i++){ // array that goes through the equation
-	  if(equ[i]!='+' && equ[i]!='-'){ // checks for term seperator
+	  if(equ[i]!='+' && equ[i]!='-' && i!=0){ // checks for term seperator
 		  term += equ[i]; // adds char to term
+    } else if(i===0){
+      equSigns.push(equ[i]);
     } else{
       equArray.push(term); // adds term to the array
       term = ""; // sets term back to empty
+      equSigns.push(equ[i]); //adds sign to the array of signs, equSigns
     }
   }
-  equArray.push(term);//adds remaining term
+  equArray.push(term); //adds remaining term
+  let r = equArray.length;
+  console.log(equArray);
+  console.log(equSigns);
   for(let k = 0; k < equArray.length; k++){ // goes through the array of equations
     if(equArray[k].includes("^")){
       let index = 0;
@@ -27,9 +34,14 @@ const derivCalc = (equ) =>{
     } else if(equArray[k].includes("x")){
       equArray[k] = equArray[k].replace('x', equArray[k] === "x" || equArray[k] === " x" || equArray[k] === "x " || equArray[k] === " x " ? '1' : ''); //gets rid of the x in x^1 cases
     } else{
-      equArray.splice(k, 1);// get rid of single terms without x
+      equArray.splice(k, 1); // get rid of single terms without x
     }
   }
-  let out = equArray[0];
+  let out = r === equSigns.length ? ("-" + equArray[0]) : equArray[0]; //accounts for if the frist element of the array is negative instead of positive
+  console.log(out);
+  for(let j = 1; j<equArray.length; j++){ //goes through both arrays
+    out += (r === equSigns.length ? equSigns[j] : equSigns[j-1]) + equArray[j]; //adds all term to the array
+  }
+  console.log(out); //prints the answer
 }
-derivCalc("3x^4 + 4x^2 + x - 4");
+derivCalc("-3x^4 + 4x^2 + x - 4"); 
