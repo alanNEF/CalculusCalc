@@ -3,9 +3,10 @@ const derivCalc = (equ) =>{
   const equSigns = [];//array of signs of each term
   let term = ""; //individual term
   for(let i = 0; i<equ.length; i++){ // array that goes through the equation
-	  if(equ[i]!='+' && equ[i]!='-'){ // checks for term seperator
+	  if(equ[i] != '+' && equ[i] != '-' && equ[i] != ' '){ // checks for term seperator
 		  term += equ[i]; // adds char to term
-    } else if(i===0){
+    } else if(equ[i] === ' '){}
+     else if(i===0){
       equSigns.push(equ[i]); // if there is a negative out front this will account for that
     } else{
       equArray.push(term); // adds term to the array
@@ -30,7 +31,8 @@ const derivCalc = (equ) =>{
       equArray[k] = equArray[k].replace(equArray[k].substring(equArray[k].indexOf("^")+1), (parseInt(equArray[k].substring(equArray[k].indexOf("^")+1))-1).toString()); //makes the power one less
       equArray[k] = equArray[k].replace(equArray[k].substring(0, index), mult); // replaces the coefficent with new coefficent
     } else if(equArray[k].includes("x")){
-      equArray[k] = equArray[k].replace('x', equArray[k] === "x" || equArray[k] === " x" || equArray[k] === "x " || equArray[k] === " x " ? '1' : ''); //gets rid of the x in x^1 cases
+      equArray[k] = equArray[k].replace('x', ''); //gets rid of the x in x^1 cases
+      equArray[k] = equArray[k] === '' || equArray[k] === ' ' ? 1 : equArray[k]; //checks for empty string
     } else{
       equArray.splice(k, 1); // get rid of single terms without x
     }
@@ -41,3 +43,4 @@ const derivCalc = (equ) =>{
   }
   console.log(out); //prints the answer in the console
 }
+derivCalc("-3x^4 + 4x^2 + 3x - 4"); 
