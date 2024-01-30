@@ -1,3 +1,6 @@
+let func = document.querySelector(".calcInput input");
+// documenet.querySelector();
+
 const derivCalc = (equ) =>{
   const equArray = []; // array of terms in the equation
   const equSigns = [];//array of signs of each term
