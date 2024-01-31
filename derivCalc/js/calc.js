@@ -1,7 +1,9 @@
-let func = document.querySelector(".calcInput input");
-// documenet.querySelector();
-
-const derivCalc = (equ) =>{
+function calculate(){
+  let func = document.querySelector(".calcInput input");
+  document.getElementById("function").innerText = func;
+  document.getElementById("result").innerHTML = derivCalc(func); 
+}
+function derivCalc (equ){
   const equArray = []; // array of terms in the equation
   const equSigns = [];//array of signs of each term
   let term = ""; //individual term
@@ -46,5 +48,5 @@ const derivCalc = (equ) =>{
     out += (r === equSigns.length ? equSigns[j] : equSigns[j-1]) + equArray[j]; //adds all term to the output
   }
   console.log(out); //prints the answer in the console
+  return out;
 }
-derivCalc("-3x^4 + 4x^2 + 3x - 4"); 
