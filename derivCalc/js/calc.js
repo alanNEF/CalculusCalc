@@ -47,7 +47,7 @@ function derivCalc (equ){
   for(let j = 1; j<equArray.length; j++){ //goes through both arrays
     out += (r === equSigns.length ? equSigns[j] : equSigns[j-1]) + equArray[j]; //adds all term to the output
   }
-  console.log(out); //prints the answer in the console
+  // console.log(out); //prints the answer in the console
   return out;
 }
 
@@ -57,10 +57,10 @@ function chainRule(equ){
   for(let i = equ.indexOf('(')+1; i<equ.lastIndexOf(')'); i++){
     innerFunction+=equ[i];
   }
-  outerFunction = equ.substring(0,equ.indexOf('(')+1) + equ.substring(equ.lastIndexOf(')'));
+  outerFunction = (equ.substring(0,equ.indexOf('(')+1) + equ.substring(equ.lastIndexOf(')'))).replace('()', 'x');
   console.log(outerFunction);
-  console.log(innerFunction);
+  return '(' + derivCalc(innerFunction) + ')' + derivCalc(outerFunction).replace('x', '(' + innerFunction + ')');
 
 }
 
-chainRule("e^(x^3+4)");
+console.log(chainRule("(x^3+4)^4"));
