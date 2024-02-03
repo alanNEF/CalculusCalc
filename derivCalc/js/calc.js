@@ -52,7 +52,15 @@ function derivCalc (equ){
 }
 
 function chainRule(equ){
-  const outerFunction = []; // array of terms in the equation
-  const innerFunction = []; //array of signs of each term
-  
+  let outerFunction = ""; 
+  let innerFunction = ""; 
+  for(let i = equ.indexOf('(')+1; i<equ.lastIndexOf(')'); i++){
+    innerFunction+=equ[i];
+  }
+  outerFunction = equ.substring(0,equ.indexOf('(')+1) + equ.substring(equ.lastIndexOf(')'));
+  console.log(outerFunction);
+  console.log(innerFunction);
+
 }
+
+chainRule("e^(x^3+4)");
