@@ -7,6 +7,14 @@ function derivCalc (equ){
   const equArray = []; // array of terms in the equation
   const equSigns = []; //array of signs of each term
   let term = ""; //individual term
+  if(equ === 'sinx'){ return 'cosx'; }
+  if(equ === 'cscx'){ return '-cscxtanx'; }
+  if(equ === 'cosx'){ return '-sinx'; }
+  if(equ === 'secx'){ return 'secxtanx'; }
+  if(equ === 'tanx'){ return 'sec^2x'; }
+  if(equ === 'cotx'){ return 'csc^2x'; }
+  if(equ === 'e^x'){ return 'e^x'; }
+  if(equ === 'lnx'){ return '1/x' }
   for(let i = 0; i<equ.length; i++){ // array that goes through the equation
 	  if(equ[i] != '+' && equ[i] != '-' && equ[i] != ' '){ // checks for term seperator
 		  term += equ[i]; // adds char to term
@@ -54,13 +62,15 @@ function derivCalc (equ){
 function chainRule(equ){
   let outerFunction = ""; 
   let innerFunction = ""; 
-  for(let i = equ.indexOf('(')+1; i<equ.lastIndexOf(')'); i++){
-    innerFunction+=equ[i];
-  }
+  // for(let i = equ.indexOf('(')+1; i<equ.lastIndexOf(')'); i++){
+  //   innerFunction+=equ[i]; //finds
+  // }
+  innerFunction = equ.substring(equ.indexOf('(')+1, equ.lastIndexOf(')'));
   outerFunction = (equ.substring(0,equ.indexOf('(')+1) + equ.substring(equ.lastIndexOf(')'))).replace('()', 'x');
   console.log(outerFunction);
-  return '(' + derivCalc(innerFunction) + ')' + derivCalc(outerFunction).replace('x', '(' + innerFunction + ')');
+  console.log(innerFunction);
+  return '(' + derivCalc(innerFunction) + ')' + derivCalc(outerFunction).replaceAll('x', '(' + innerFunction + ')');
 
 }
 
-console.log(chainRule("(x^3+4)^4"));
+console.log(chainRule("e^(x^3+4)"));
