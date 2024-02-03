@@ -1,7 +1,7 @@
 function calculate(){
-  let func = document.querySelector(".calcInput input");
-  document.getElementById("function").innerText = func;
-  document.getElementById("result").innerHTML = derivCalc(func); 
+  let func = document.getElementById("function").value;
+  console.log(func)
+  document.getElementById("result").innerText = derivCalc(func); 
 }
 function derivCalc (equ){
   const equArray = []; // array of terms in the equation
