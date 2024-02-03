@@ -5,7 +5,7 @@ function calculate(){
 }
 function derivCalc (equ){
   const equArray = []; // array of terms in the equation
-  const equSigns = [];//array of signs of each term
+  const equSigns = []; //array of signs of each term
   let term = ""; //individual term
   for(let i = 0; i<equ.length; i++){ // array that goes through the equation
 	  if(equ[i] != '+' && equ[i] != '-' && equ[i] != ' '){ // checks for term seperator
@@ -49,4 +49,10 @@ function derivCalc (equ){
   }
   console.log(out); //prints the answer in the console
   return out;
+}
+
+function chainRule(equ){
+  const outerFunction = []; // array of terms in the equation
+  const innerFunction = []; //array of signs of each term
+  
 }
