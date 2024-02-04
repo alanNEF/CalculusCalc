@@ -1,9 +1,9 @@
 function calculate(){
   let func = document.getElementById("function").value;
   console.log(func)
-  document.getElementById("result").innerText = derivCalc(func); 
+  document.getElementById("result").innerText = calc(func); 
 }
-function derivCalc (equ){
+function deriv (equ){
   const equArray = []; // array of terms in the equation
   const equSigns = []; //array of signs of each term
   let term = ""; //individual term
@@ -58,10 +58,10 @@ function derivCalc (equ){
   return out;
 }
 
-function chainRule(equ){
+function calc(equ){
   let innerFunction = equ.substring(equ.indexOf('(')+1, equ.lastIndexOf(')')); // find the inner function through parenthesis
   let outerFunction = (equ.substring(0,equ.indexOf('(')+1) + equ.substring(equ.lastIndexOf(')'))).replace('()', 'x'); // finds outer function by seeing whats outside parenthesis
-  return '(' + derivCalc(innerFunction) + ')' + derivCalc(outerFunction).replaceAll('x', '(' + innerFunction + ')'); // reurns the result by following the chain rule formula
+  console.log(innerFunction==="");
+  return innerFunction==="" ? deriv(outerFunction) : '(' + deriv(innerFunction) + ')' + deriv(outerFunction).replaceAll('x', '(' + innerFunction + ')'); // reurns the result by following the chain rule formula
 }
-
-console.log(chainRule("e^(x^3+4)"));
+console.log(calc("sec(x^2)"));
