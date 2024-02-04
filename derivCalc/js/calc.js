@@ -63,5 +63,3 @@ function chainRule(equ){
   let outerFunction = (equ.substring(0,equ.indexOf('(')+1) + equ.substring(equ.lastIndexOf(')'))).replace('()', 'x'); // finds outer function by seeing whats outside parenthesis
   return '(' + derivCalc(innerFunction) + ')' + derivCalc(outerFunction).replaceAll('x', '(' + innerFunction + ')'); // reurns the result by following the chain rule formula
 }
-
-console.log(chainRule("e^(x^3+4)"));
