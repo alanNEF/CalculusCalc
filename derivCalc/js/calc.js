@@ -63,7 +63,18 @@ function calc(equ){
   let outerFunction = (equ.substring(0,equ.indexOf('(')+1) + equ.substring(equ.lastIndexOf(')'))).replace('()', 'x'); // finds outer function by seeing whats outside parenthesis
   return innerFunction==="" ? deriv(outerFunction) : '(' + deriv(innerFunction) + ')' + deriv(outerFunction).replaceAll('x', '(' + innerFunction + ')'); // reurns the result by following the chain rule formula
 }
-
+console.log(calc("sin(2x^2)"));
 function formatEditor(equ){
-  
+  const equTerms = []; // array of terms in the equation
+  let term = ""; //individual term
+  for(let i = 0; i<equ.length; i++){ // array that goes through the equation
+	  if(equ[i] != '(' && equ[i] != ')' && equ[i] != ' '){ // checks for term seperator
+		  term += equ[i]; // adds char to term
+    } else{
+      equTerms.push(term); // adds term to the array
+      term = ""; // sets term back to empty
+    }
+  }
+  console.log(equTerms);
 }
+formatEditor(calc("sin(2x^2)"));
