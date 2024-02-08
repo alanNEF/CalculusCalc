@@ -55,7 +55,7 @@ function deriv (equ){
   for(let j = 1; j<equArray.length; j++){ //goes through both arrays
     out += (r === equSigns.length ? equSigns[j] : equSigns[j-1]) + equArray[j]; //adds all term to the output
   }
-  return out;
+  return out; // return result
 }
 
 function calc(equ){
@@ -76,5 +76,17 @@ function formatEditor(equ){
     }
   }
   console.log(equTerms);
+  for(let j = 0; j<equTerms.length; j++){
+    if(equTerms[j].includes('cos') || equTerms[j].includes('sin') || equTerms[j].includes('csc') || equTerms[j].includes('sec') || equTerms[j].includes('tan') || equTerms[j].includes('cot') || equTerms[j].includes('ln') || equTerms[j].includes('e^')){
+      equTerms[j] = equTerms[j] + '(' + equTerms[j+1] + ')';
+      equTerms.splice(j+1,1);
+    } else if(equTerms[j].length===0){
+      console.log(j);
+      console.log(equTerms[j].length);
+      console.log(equTerms[j]);
+      equTerms.splice(j,1);
+    }
+  }
+  console.log(equTerms);
 }
-formatEditor(calc("sin(2x^2)"));
+formatEditor(calc("e^(2x^2)"));
