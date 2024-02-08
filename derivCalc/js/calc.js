@@ -67,7 +67,7 @@ console.log(calc("sin(2x^2)"));
 function formatEditor(equ){
   const equTerms = []; // array of terms in the equation
   let term = ""; //individual term
-  for(let i = 0; i<equ.length; i++){ // array that goes through the equation
+  for(let i = 0; i<equ.length; i++){ // array that goes through the equation (very similar to the deriv func above)
 	  if(equ[i] != '(' && equ[i] != ')' && equ[i] != ' '){ // checks for term seperator
 		  term += equ[i]; // adds char to term
     } else{
@@ -75,18 +75,14 @@ function formatEditor(equ){
       term = ""; // sets term back to empty
     }
   }
-  console.log(equTerms);
-  for(let j = 0; j<equTerms.length; j++){
-    if(equTerms[j].includes('cos') || equTerms[j].includes('sin') || equTerms[j].includes('csc') || equTerms[j].includes('sec') || equTerms[j].includes('tan') || equTerms[j].includes('cot') || equTerms[j].includes('ln') || equTerms[j].includes('e^')){
-      equTerms[j] = equTerms[j] + '(' + equTerms[j+1] + ')';
-      equTerms.splice(j+1,1);
-    } else if(equTerms[j].length===0){
-      console.log(j);
-      console.log(equTerms[j].length);
-      console.log(equTerms[j]);
+  for(let j = 0; j<equTerms.length; j++){ // loop is used to connect trig functions an others to its inner part when seperated in the last loop
+    if(equTerms[j].includes('cos') || equTerms[j].includes('sin') || equTerms[j].includes('csc') || equTerms[j].includes('sec') || equTerms[j].includes('tan') || equTerms[j].includes('cot') || equTerms[j].includes('ln') || equTerms[j].includes('e^')){ // searches for these cases
+      equTerms[j] = equTerms[j] + '(' + equTerms[j+1] + ')'; // combines the current and next index in the array
+      equTerms.splice(j+1,1); // removes the next index in the array
+    } else if(equTerms[j].length===0){ //deletes any empty spots
       equTerms.splice(j,1);
     }
   }
-  console.log(equTerms);
+  console.log(equTerms);//prints results
 }
 formatEditor(calc("e^(2x^2)"));
