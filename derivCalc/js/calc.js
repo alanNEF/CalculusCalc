@@ -65,24 +65,30 @@ function calc(equ){
 }
 console.log(calc("sin(2x^2)"));
 function formatEditor(equ){
-  const equTerms = []; // array of terms in the equation
+  let out = "";
+  const equTerms = []; //array of terms in the equation
   let term = ""; //individual term
-  for(let i = 0; i<equ.length; i++){ // array that goes through the equation (very similar to the deriv func above)
-	  if(equ[i] != '(' && equ[i] != ')' && equ[i] != ' '){ // checks for term seperator
-		  term += equ[i]; // adds char to term
+  for(let i = 0; i<equ.length; i++){ //array that goes through the equation (very similar to the deriv func above)
+	  if(equ[i] != '(' && equ[i] != ')' && equ[i] != ' '){ //checks for term seperator
+		  term += equ[i]; //adds char to term
     } else{
-      equTerms.push(term); // adds term to the array
-      term = ""; // sets term back to empty
+      equTerms.push(term); //adds term to the array
+      term = ""; //sets term back to empty
     }
   }
-  for(let j = 0; j<equTerms.length; j++){ // loop is used to connect trig functions an others to its inner part when seperated in the last loop
+  for(let j = 0; j<equTerms.length; j++){ //loop is used to connect trig functions an others to its inner part when seperated in the last loop
     if(equTerms[j].includes('cos') || equTerms[j].includes('sin') || equTerms[j].includes('csc') || equTerms[j].includes('sec') || equTerms[j].includes('tan') || equTerms[j].includes('cot') || equTerms[j].includes('ln') || equTerms[j].includes('e^')){ // searches for these cases
       equTerms[j] = equTerms[j] + '(' + equTerms[j+1] + ')'; // combines the current and next index in the array
-      equTerms.splice(j+1,1); // removes the next index in the array
+      equTerms.splice(j+1,1); //removes the next index in the array
     } else if(equTerms[j].length===0){ //deletes any empty spots
       equTerms.splice(j,1);
     }
   }
-  console.log(equTerms);//prints results
+  console.log(equTerms);
+  for(let k = 0; k < equTerms.length; k++){
+    out += equTerms[k];
+  }
+  return out;
 }
-formatEditor(calc("e^(2x^2)"));
+console.log(formatEditor(calc("sin(2x^2+4x)")));
+// console.log(calc("4x^3 + 3x + (x^3 - x)^2"));
