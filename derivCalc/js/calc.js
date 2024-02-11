@@ -7,16 +7,8 @@ function deriv (equ){
   const equArray = []; // array of terms in the equation
   const equSigns = []; //array of signs of each term
   let term = ""; //individual term
-  if(equ === 'sinx'){ return 'cosx'; }
-  if(equ === 'cscx'){ return '-cscxtanx'; }
-  if(equ === 'cosx'){ return '-sinx'; }
-  if(equ === 'secx'){ return 'secxtanx'; }
-  if(equ === 'tanx'){ return 'sec^2x'; }
-  if(equ === 'cotx'){ return 'csc^2x'; }
-  if(equ === 'e^x'){ return 'e^x'; }
-  if(equ === 'lnx'){ return '1/x' }
   for(let i = 0; i<equ.length; i++){ // array that goes through the equation
-	  if(equ[i] != '+' && equ[i] != '-' && equ[i] != ' '){ // checks for term seperator
+	  if(equ[i] != '+' && equ[i] != '-' && equ[i] != ' ' && equ[i]!='*'){ // checks for term seperator
 		  term += equ[i]; // adds char to term
     } else if(equ[i] === ' '){}
      else if(i===0){
@@ -30,7 +22,15 @@ function deriv (equ){
   equArray.push(term); //adds remaining term
   let r = equArray.length; // placeholder var
   for(let k = 0; k < equArray.length; k++){ // goes through the array of equations
-    if(equArray[k].includes("^")){
+    if(equArray[k] === 'sinx'){ equArray[k] = 'cosx'; }
+    else if(equArray[k] === 'cscx'){ equArray[k] = '-cscxtanx'; }
+    else if(equArray[k] === 'cosx'){ equArray[k] = '-sinx'; }
+    else if(equArray[k] === 'secx'){ equArray[k] = 'secxtanx'; }
+    else if(equArray[k] === 'tanx'){ equArray[k] = 'sec^2x'; }
+    else if(equArray[k] === 'cotx'){ equArray[k] = 'csc^2x'; }
+    else if(equArray[k] === 'e^x'){ equArray[k] = 'e^x'; }
+    else if(equArray[k] === 'lnx'){ equArray[k] = '1/x' }
+    else if(equArray[k].includes("^")){
       let index = 0;
       let mult = parseInt(equArray[k].substring(equArray[k].indexOf("^")+1)); //finds power of the term
       if(equArray[k].substring(0,1) != "x"){
@@ -47,13 +47,15 @@ function deriv (equ){
     } else if(equArray[k].includes("x")){
       equArray[k] = equArray[k].replace('x', ''); //gets rid of the x in x^1 cases
       equArray[k] = equArray[k] === '' || equArray[k] === ' ' ? 1 : equArray[k]; //checks for empty string
-    } else{
+    } else if(equSigns[k]==='*'){} // makes it so it does not treat coefficents as regular terms
+    else{
       equArray.splice(k, 1); // get rid of single terms without x
     }
   }
   let out = r === equSigns.length ? ("-" + equArray[0]) : equArray[0]; //accounts for if the frist element of the array is negative instead of positive
   for(let j = 1; j<equArray.length; j++){ //goes through both arrays
     out += (r === equSigns.length ? equSigns[j] : equSigns[j-1]) + equArray[j]; //adds all term to the output
+    out = out.replace('*', '');
   }
   return out; // return result
 }
@@ -63,7 +65,6 @@ function calc(equ){
   let outerFunction = (equ.substring(0,equ.indexOf('(')+1) + equ.substring(equ.lastIndexOf(')'))).replace('()', 'x'); // finds outer function by seeing whats outside parenthesis
   return innerFunction==="" ? deriv(outerFunction) : '(' + deriv(innerFunction) + ')' + deriv(outerFunction).replaceAll('x', '(' + innerFunction + ')'); // reurns the result by following the chain rule formula
 }
-console.log(calc("sin(2x^2)"));
 function formatEditor(equ){
   let out = "";
   const equTerms = []; //array of terms in the equation
@@ -90,5 +91,4 @@ function formatEditor(equ){
   }
   return out;
 }
-console.log(formatEditor(calc("sin(2x^2+4x)")));
-// console.log(calc("4x^3 + 3x + (x^3 - x)^2"));
+console.log(calc("3x+3*sin(x)"));
