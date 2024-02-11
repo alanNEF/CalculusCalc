@@ -29,7 +29,7 @@ function deriv (equ){
     else if(equArray[k] === 'tanx'){ equArray[k] = 'sec^2x'; }
     else if(equArray[k] === 'cotx'){ equArray[k] = 'csc^2x'; }
     else if(equArray[k] === 'e^x'){ equArray[k] = 'e^x'; }
-    else if(equArray[k] === 'lnx'){ equArray[k] = '1/x' }
+    else if(equArray[k] === 'lnx'){ equArray[k] = '1/(x)' }
     else if(equArray[k].includes("^")){
       let index = 0;
       let mult = parseInt(equArray[k].substring(equArray[k].indexOf("^")+1)); //finds power of the term
@@ -91,4 +91,3 @@ function formatEditor(equ){
   }
   return out;
 }
-console.log(calc("3x+3*sin(x)"));
