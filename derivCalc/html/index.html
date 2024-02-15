@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculus Calculator</title>
-</head>
-<body>
-  <div class="calcInput">
-    <form action="text">
-      Type the derivative into the provided area. Use "^" key to indicate power. Currently one polynomial inputs will yield proper result. <br>
-      <label for="function">Function:</label><br>
-      <input type="text" id="function" placeholder="Type Function Here"><br>
-    </form>
-    <button onclick="calculate()" id="button-submit">Calculate</button><br>
-      <label for="Answer">Answer</label><br>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus Calculator</title>
+  </head>
+  <body>
+    <div class="calcInput">
+      <form action="text">
+        Type the derivative into the provided area. Use "^" key to indicate power. Currently one polynomial inputs will yield proper result. <br> <br>
+        <label for="function">Function:</label><br>
+        <input type="text" id="function" placeholder="Type Function Here"><br>
+      </form> <br>
+      <button onclick="calculate()" id="button-submit">Calculate</button><br> <br>
+      <label for="Answer">Answer:</label><br>
       <font id="result"></font>
-  </div>
-  <script src="/derivCalc/js/calc.js"></script>
-</body>
+    </div>
+    <script src="/derivCalc/js/calc.js"></script>
+  </body>
+  <style src="/derivCalc/css/style.css"></style>
 </html>
