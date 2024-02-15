@@ -6,3 +6,9 @@ body{
     font-size: medium;
     color: aliceblue;
 }
+
+.input-text{
+    border-radius: 8px;
+    border: 0;
+    padding-left: 1%;
+}
