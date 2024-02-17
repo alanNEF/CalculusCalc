@@ -1,0 +1,37 @@
+body{
+    background-color: black;
+    text-decoration: none;
+    font-family: Helvetica;
+    font: inherit;
+    font-size: medium;
+    color: aliceblue;
+}
+
+.calcInput{
+    font-family: Helvetica;
+    font-weight: 100;
+    font-size: medium;
+    font-style: normal;
+}
+
+.input-text{
+    border-radius: 8px;
+    border: 0;
+    padding-left: 1%;
+    font-family: Helvetica;
+}
+
+button {
+    border-radius: 10rem;
+    border: 0;
+    background-color:aliceblue;
+    font-family: Helvetica;
+    position: absolute;
+    padding: 0.4%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+button:hover{
+    background-color: aquamarine;
+}
