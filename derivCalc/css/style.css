@@ -21,7 +21,13 @@ button {
 }
 
 button:hover{
-    background-color: aquamarine;
+    animation-name: button-hover;
+    animation-duration: 2s;
+}
+
+@keyframes button-hover {
+    from{background-color: aliceblue;}
+    to{background-color: aquamarine;}
 }
 #PageName{
     font-family: Arial, Helvetica, sans-serif;
