@@ -14,6 +14,7 @@ font{
 #PageName{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 300%;
+    line-height: 180%;
 }
 
 .calculator{
@@ -23,7 +24,7 @@ font{
     justify-content: center;
 }
 
-.calcInput-container{
+.calcContainer{
     font-family: Helvetica;
     font-weight: 100;
     font-size: medium;
@@ -37,7 +38,7 @@ font{
     border-width: 1px;
     border-color: aliceblue;
 }
-.calcInput{
+.calcInfo{
     display: block;
     line-height: 180%;
 }

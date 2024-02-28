@@ -8,12 +8,12 @@
   </head>
   <body>
     <div id="PageName">
-      CalculusCalc
+      CalculusCalc <br>
     </div>
     <font>Type the derivative into the provided area. Use "^" key to indicate power. Currently one polynomial inputs will yield proper result.</font> <br> <br>
     <div class="calculator">
-      <div class="calcInput-container">
-        <div class = "calcInput">
+      <div class="calcContainer">
+        <div class = "calcInfo">
         <form action="text">
           <label for="function">Function:</label><br>
           <input class="input-text" type="text" id="function" placeholder="Type Function Here"><br>
@@ -21,8 +21,8 @@
         <button onclick="calculate()" id="button-submit">Calculate</button> <br>
       </div>
     </div> <br>
-    <div class="calcInput-container">
-      <div class="calcInput">
+    <div class="calcContainer">
+      <div class="calcInfo">
         <label for="Answer">Answer:</label><br><br>
         <font id="result"></font>
       </div>
