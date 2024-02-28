@@ -11,6 +11,11 @@ font{
     font-family: Helvetica;
 }
 
+#PageName{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 300%;
+}
+
 .calculator{
     display: flex;
     flex-direction: column;
