@@ -21,6 +21,7 @@ body{
 }
 .calcInput{
     display: block;
+    line-height: 180%;
 }
 
 .input-text{
