@@ -5,13 +5,22 @@ body{
     font: inherit;
     font-size: medium;
     color: aliceblue;
+    flex-direction: row;
 }
 
-.calcInput{
+.calcInput-container{
     font-family: Helvetica;
     font-weight: 100;
     font-size: medium;
     font-style: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height:100px;
+    min-width: 100px;
+}
+.calcInput{
+    display: block;
 }
 
 .input-text{

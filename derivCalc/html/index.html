@@ -7,16 +7,18 @@
     <link rel="stylesheet" href="../css/style.css">
   </head>
   <body>
-    <div class="calcInput">
-      <form action="text">
-        Type the derivative into the provided area. Use "^" key to indicate power. Currently one polynomial inputs will yield proper result. <br> <br>
-        <label for="function">Function:</label><br>
-        <input class="input-text" type="text" id="function" placeholder="Type Function Here"><br>
-      </form> <br>
-      <button onclick="calculate()" id="button-submit">Calculate</button><br> <br>
-      <label for="Answer">Answer:</label><br>
-      <font id="result"></font>
+    Type the derivative into the provided area. Use "^" key to indicate power. Currently one polynomial inputs will yield proper result. <br> <br>
+    <div class="calcInput-container">
+      <div class = "calcInput">
+        <form action="text">
+          <label for="function">Function:</label><br>
+          <input class="input-text" type="text" id="function" placeholder="Type Function Here"><br>
+        </form> <br>
+        <button onclick="calculate()" id="button-submit">Calculate</button><br> <br>
+      </div>
     </div>
+    <label for="Answer">Answer:</label><br>
+    <font id="result"></font>
     <script src="../js/calc.js"></script>
   </body>
   <style src="../css/style.css"></style>
