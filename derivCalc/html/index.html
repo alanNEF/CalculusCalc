@@ -8,22 +8,24 @@
   </head>
   <body>
     Type the derivative into the provided area. Use "^" key to indicate power. Currently one polynomial inputs will yield proper result. <br> <br>
-    <div class="calcInput-container">
-      <div class = "calcInput">
+    <div class="calculator">
+      <div class="calcInput-container">
+        <div class = "calcInput">
         <form action="text">
           <label for="function">Function:</label><br>
           <input class="input-text" type="text" id="function" placeholder="Type Function Here"><br>
         </form> 
         <button onclick="calculate()" id="button-submit">Calculate</button><br> <br>
       </div>
-    </div>
+    </div> <br>
     <div class="calcInput-container">
       <div class="calcInput">
         <label for="Answer">Answer:</label><br>
         <font id="result"></font>
       </div>
     </div>
+  </div>
     <script src="../js/calc.js"></script>
   </body>
   <style src="../css/style.css"></style>
-</html>
+  </html>
