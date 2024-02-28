@@ -22,7 +22,8 @@ button {
 
 button:hover{
     animation-name: button-hover;
-    animation-duration: 2s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes button-hover {
