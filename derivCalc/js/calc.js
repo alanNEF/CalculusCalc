@@ -107,20 +107,27 @@ function derivCalc (equ){
       que.push(parseInt(term));
     } else if(equ[i] === '('){
       stack.unshift(equ[i]);
-    } else if(equ[i] != '+' || equ[i] != '-' || equ[i] != '/' || equ[i]!='*'){
-      if(signPresidence(equ[i]) < signPresidence(stack[stack.length-1]) || signPresidence(equ[i]) === signPresidence(stack[stack.length-1]) || stack[stack.length-1] === undefined){
+    } else if(equ[i] === '+' || equ[i] === '-' || equ[i] === '/' || equ[i] === '*' || equ[i] === '^'){
+      if(signPresidence(equ[i]) > signPresidence(stack[stack.length-1]) || signPresidence(equ[i]) === signPresidence(stack[stack.length-1]) || stack[stack.length-1] === undefined){
         stack.unshift(equ[i]);
       } else {
-        while(!(signPresidence(equ[i]) < signPresidence(stack[stack.length-1]) || signPresidence(equ[i]) === signPresidence(stack[stack.length-1]) || stack[stack.length-1] === undefined)){
+        while(!(signPresidence(equ[i]) > signPresidence(stack[stack.length-1]) || signPresidence(equ[i]) === signPresidence(stack[stack.length-1]) || stack[stack.length-1] === undefined)){
           que.push(stack.shift());
         }
         stack.unshift(equ[i]);
       }
+    } else if(equ[i] === ')'){
+      for(j in stack){
+        while(stack[j] === '('){
+          que.push(stack.shift());
+        }
+        stack.shift();
+      }
     }
-    console.log(signPresidence(equ[i])+ ","+ signPresidence(stack[stack.length-1]));
+    
+    console.log(stack);
   }
-  console.log(stack);
-  console.log(que);
+  // console.log(que);
 }
 
 function signPresidence (sign){
@@ -137,4 +144,4 @@ function signPresidence (sign){
     return null;
   }
 }
-derivCalc("4+5/4-6");
+derivCalc("4+5/(4-6)");
