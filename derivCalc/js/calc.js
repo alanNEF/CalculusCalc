@@ -118,16 +118,11 @@ function derivCalc (equ){
       }
     } else if(equ[i] === ')'){
       for(j in stack){
-        while(stack[j] === '('){
-          que.push(stack.shift());
-        }
-        stack.shift();
+        if(stack[j] === '('){
+          stack.shift();
+        } else{que.push(stack.shift());}
       }
     }
-    // console.log(i);
-    // console.log(stack);
-    // console.log(que);
-    // console.log(signPresidence(equ[i]) > signPresidence(stack[0]));
   }
   for(i in stack){
     que.push(stack.shift());
