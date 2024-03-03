@@ -95,22 +95,46 @@ function formatEditor(equ){
 function derivCalc (equ){
   const stack = [];
   const que = [];
+  let term;
   for(i in equ){
-    
+    if(!isNaN(parseInt(equ[i]))){
+      term = equ[i];
+      for(let j = i+1; j<equ.length; j++){
+        if(!isNaN(parseInt(equ[j]))){
+          term += equ[j];
+        } else{break;}
+      }
+      que.push(parseInt(term));
+    } else if(equ[i] === '('){
+      stack.unshift(equ[i]);
+    } else if(equ[i] != '+' || equ[i] != '-' || equ[i] != '/' || equ[i]!='*'){
+      if(signPresidence(equ[i]) < signPresidence(stack[stack.length-1]) || signPresidence(equ[i]) === signPresidence(stack[stack.length-1]) || stack[stack.length-1] === undefined){
+        stack.unshift(equ[i]);
+      } else {
+        while(!(signPresidence(equ[i]) < signPresidence(stack[stack.length-1]) || signPresidence(equ[i]) === signPresidence(stack[stack.length-1]) || stack[stack.length-1] === undefined)){
+          que.push(stack.shift());
+        }
+        stack.unshift(equ[i]);
+      }
+    }
+    console.log(signPresidence(equ[i])+ ","+ signPresidence(stack[stack.length-1]));
   }
+  console.log(stack);
+  console.log(que);
 }
 
 function signPresidence (sign){
   if(sign==='-' || sign==='+'){
-    return 0;
-  }
-  else if(sign === '/' || sign === '*'){
     return 1;
   }
-  else if(sign === '^'){
+  else if(sign === '/' || sign === '*'){
     return 2;
+  }
+  else if(sign === '^'){
+    return 3;
   }
   else{
     return null;
   }
 }
+derivCalc("4+5/4-6");
