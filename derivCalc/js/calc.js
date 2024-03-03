@@ -95,4 +95,22 @@ function formatEditor(equ){
 function derivCalc (equ){
   const stack = [];
   const que = [];
+  for(i in equ){
+    
+  }
+}
+
+function signPresidence (sign){
+  if(sign==='-' || sign==='+'){
+    return 0;
+  }
+  else if(sign === '/' || sign === '*'){
+    return 1;
+  }
+  else if(sign === '^'){
+    return 2;
+  }
+  else{
+    return null;
+  }
 }
