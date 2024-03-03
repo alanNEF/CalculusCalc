@@ -108,10 +108,10 @@ function derivCalc (equ){
     } else if(equ[i] === '('){
       stack.unshift(equ[i]);
     } else if(equ[i] === '+' || equ[i] === '-' || equ[i] === '/' || equ[i] === '*' || equ[i] === '^'){
-      if(signPresidence(equ[i]) > signPresidence(stack[stack.length-1]) || signPresidence(equ[i]) === signPresidence(stack[stack.length-1]) || stack[stack.length-1] === undefined){
+      if(signPresidence(equ[i]) > signPresidence(stack[0]) || signPresidence(equ[i]) === signPresidence(stack[0]) || stack[0] === undefined){
         stack.unshift(equ[i]);
       } else {
-        while(!(signPresidence(equ[i]) > signPresidence(stack[stack.length-1]) || signPresidence(equ[i]) === signPresidence(stack[stack.length-1]) || stack[stack.length-1] === undefined)){
+        while(!(signPresidence(equ[i]) > signPresidence(stack[0]) || signPresidence(equ[i]) === signPresidence(stack[0]) || stack[0] === undefined)){
           que.push(stack.shift());
         }
         stack.unshift(equ[i]);
@@ -124,10 +124,15 @@ function derivCalc (equ){
         stack.shift();
       }
     }
-    
-    console.log(stack);
+    // console.log(i);
+    // console.log(stack);
+    // console.log(que);
+    // console.log(signPresidence(equ[i]) > signPresidence(stack[0]));
   }
-  // console.log(que);
+  for(i in stack){
+    que.push(stack.shift());
+  }
+  console.log(que);
 }
 
 function signPresidence (sign){
@@ -144,4 +149,4 @@ function signPresidence (sign){
     return null;
   }
 }
-derivCalc("4+5/(4-6)");
+derivCalc("(5*4+3*)-1");
