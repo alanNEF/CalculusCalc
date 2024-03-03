@@ -91,3 +91,8 @@ function formatEditor(equ){
   }
   return out;
 }
+
+function derivCalc (equ){
+  const stack = [];
+  const que = [];
+}
