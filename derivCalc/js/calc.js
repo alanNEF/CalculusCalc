@@ -93,18 +93,19 @@ function formatEditor(equ){
 }
 
 function derivCalc (equ){
-  const stack = [];
-  const que = [];
-  let term;
-  for(let i = 0; i<equ.length; i++){
-    if(!isNaN(parseInt(equ[i]))){
+  const stack = []; //stack with equation operators
+  const que = []; // que for final arithmatic
+  let term; //
+  for(let i = 0; i<equ.length; i++){ // loops through string
+    if(!isNaN(parseInt(equ[i]))){ //
       term = equ[i];
       for(let j = i+1; j<equ.length; j++){
         if(!isNaN(parseInt(equ[j]))){
           term += equ[j];
-        } else{break;}
+        } else{break;} // checks if num is more than one digit
       }
-      que.push(parseInt(term));
+      console.log(term); 
+      que.push(parseInt(term)); // insantly adds digit to que
     } else if(equ[i] === '('){
       stack.unshift(equ[i]);
     } else if(equ[i] === '+' || equ[i] === '-' || equ[i] === '/' || equ[i] === '*' || equ[i] === '^'){
@@ -135,12 +136,12 @@ function derivCalc (equ){
         i +=3;
       }
     }
-    console.log(stack);
+    // console.log(stack);
   }
   for(i in stack){
     que.push(stack.shift());
   }
-  console.log(que);
+  // console.log(que);
 }
 
 function signPresidence (sign){
@@ -157,4 +158,4 @@ function signPresidence (sign){
     return null;
   }
 }
-derivCalc("sin(4)-1");
+derivCalc("sin(14)-1");
