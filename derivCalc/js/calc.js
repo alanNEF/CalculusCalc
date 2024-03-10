@@ -102,49 +102,47 @@ function derivCalc (equ){
       for(let j = i+1; j<equ.length; j++){
         if(!isNaN(parseInt(equ[j]))){
           term += equ[j];
+          i++;
         } else{break;} // checks if num is more than one digit
       }
-      console.log(term); 
       que.push(parseInt(term)); // insantly adds digit to que
     } else if(equ[i] === '('){
-      stack.unshift(equ[i]);
+      stack.unshift(equ[i]); // adds ( straight to stack)
     } else if(equ[i] === '+' || equ[i] === '-' || equ[i] === '/' || equ[i] === '*' || equ[i] === '^'){
-      if(signPresidence(equ[i]) > signPresidence(stack[0]) || signPresidence(equ[i]) === signPresidence(stack[0]) || stack[0] === undefined){
+      if(signPresidence(equ[i]) > signPresidence(stack[0]) || signPresidence(equ[i]) === signPresidence(stack[0]) || stack[0] === undefined){ // if the sign on top of stack has less precidence than the current sign it adds it to stack
         stack.unshift(equ[i]);
       } else {
-        while(!(signPresidence(equ[i]) > signPresidence(stack[0]) || signPresidence(equ[i]) === signPresidence(stack[0]) || stack[0] === undefined)){
+        while(!(signPresidence(equ[i]) > signPresidence(stack[0]) || signPresidence(equ[i]) === signPresidence(stack[0]) || stack[0] === undefined)){ //if the sign on top of stack has more precidence than the current sign it pushes the top sign until thats not the case
           que.push(stack.shift());
         }
-        stack.unshift(equ[i]);
+        stack.unshift(equ[i]); // adds higher precidence sign to top of stack
       }
     } else if(equ[i] === ')'){
-      for(j in stack){
-        if(stack.includes("sin(")){
-          if(stack[j]==="sin("){
-            que.push(stack.shift());
+      for(j in stack){ // loops through stack
+        if(stack.includes("sin(")){ // checks if it include sign
+          if(stack[j]==="sin("){ // adds sign and all stack between to que
+            que.push(stack.shift()); 
             que.push(')');
           }else{que.push(stack.shift());}
         } else{
-          if(stack[j] === '('){
-            stack.shift();
-          } else{que.push(stack.shift());}
+          if(stack[j] === '('){ // checks for normal (
+            stack.shift(); 
+          } else{que.push(stack.shift());} // adds everything between itself and and the top of stack to que then deletes both()
         }
       }
     } else if(equ[i] === 's'){
-      if(equ.substring(i, i+3) === "sin"){
+      if(equ.substring(i, i+3) === "sin"){ // sin is treated as its own term and added to stack
         stack.unshift('sin(');
         i +=3;
       }
     }
-    // console.log(stack);
   }
   for(i in stack){
-    que.push(stack.shift());
+    que.push(stack.shift()); // moves all stack into que
   }
-  // console.log(que);
 }
 
-function signPresidence (sign){
+function signPresidence (sign){ // assigns signs their precidence
   if(sign==='-' || sign==='+'){
     return 1;
   }
