@@ -118,9 +118,16 @@ function derivCalc (equ){
       }
     } else if(equ[i] === ')'){
       for(j in stack){
-        if(stack[j] === '('){
-          stack.shift();
-        } else{que.push(stack.shift());}
+        if(stack.includes("sin(")){
+          if(stack[j]==="sin("){
+            que.push(stack.shift());
+            que.push(')');
+          }else{que.push(stack.shift());}
+        } else{
+          if(stack[j] === '('){
+            stack.shift();
+          } else{que.push(stack.shift());}
+        }
       }
     } else if(equ[i] === 's'){
       if(equ.substring(i, i+3) === "sin"){
@@ -151,12 +158,3 @@ function signPresidence (sign){
   }
 }
 derivCalc("sin(4)-1");
-
-// for(let i = 0; i<10; i++){
-//   if(i%2===0){
-//     i+=2;
-//   } else{
-//     i+=1;
-//   }
-//   console.log(i);
-// }
