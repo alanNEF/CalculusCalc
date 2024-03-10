@@ -96,7 +96,7 @@ function derivCalc (equ){
   const stack = [];
   const que = [];
   let term;
-  for(i in equ){
+  for(let i = 0; i<equ.length; i++){
     if(!isNaN(parseInt(equ[i]))){
       term = equ[i];
       for(let j = i+1; j<equ.length; j++){
@@ -122,7 +122,13 @@ function derivCalc (equ){
           stack.shift();
         } else{que.push(stack.shift());}
       }
+    } else if(equ[i] === 's'){
+      if(equ.substring(i, i+3) === "sin"){
+        stack.unshift('sin(');
+        i +=3;
+      }
     }
+    console.log(stack);
   }
   for(i in stack){
     que.push(stack.shift());
@@ -144,4 +150,13 @@ function signPresidence (sign){
     return null;
   }
 }
-derivCalc("(5*4+3*)-1");
+derivCalc("sin(4)-1");
+
+// for(let i = 0; i<10; i++){
+//   if(i%2===0){
+//     i+=2;
+//   } else{
+//     i+=1;
+//   }
+//   console.log(i);
+// }
