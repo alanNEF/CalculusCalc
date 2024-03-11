@@ -141,9 +141,19 @@ function derivCalc (equ){
     que.push(stack.shift()); // moves all stack into que
   }
   //Post fix stack evaluator
-  // while(que.length!=0){
-  //   if(que[0])
-  // }
+  while(que.length!=0){
+    if(!isNaN(parseInt(que[0]))){
+      stack.push(que.shift());
+    } else if(que[0] === '*'){
+      stack.push(parseInt(stack.shift()) * parseInt(stack.shift()));
+    } else if(que[0] === '/'){
+      stack.push(parseInt(stack.shift()) / parseInt(stack.shift()));
+    } else if(que[0] === '+'){
+      stack.push(parseInt(stack.shift()) + parseInt(stack.shift()));
+    } else if(que[0] === '-'){
+      stack.push(parseInt(stack.shift()) - parseInt(stack.shift()));
+    }
+  }
   console.log(que);
 }
 
