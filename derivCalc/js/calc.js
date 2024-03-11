@@ -140,6 +140,11 @@ function derivCalc (equ){
   for(i in stack){
     que.push(stack.shift()); // moves all stack into que
   }
+  //Post fix stack evaluator
+  // while(que.length!=0){
+  //   if(que[0])
+  // }
+  console.log(que);
 }
 
 function signPresidence (sign){ // assigns signs their precidence
@@ -156,4 +161,4 @@ function signPresidence (sign){ // assigns signs their precidence
     return null;
   }
 }
-derivCalc("sin(14)-1");
+derivCalc("(5*4+3)-1");
