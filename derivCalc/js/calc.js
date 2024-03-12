@@ -145,16 +145,20 @@ function derivCalc (equ){
     if(!isNaN(parseInt(que[0]))){
       stack.push(que.shift());
     } else if(que[0] === '*'){
+      que.shift();
       stack.push(parseInt(stack.shift()) * parseInt(stack.shift()));
     } else if(que[0] === '/'){
+      que.shift();
       stack.push(parseInt(stack.shift()) / parseInt(stack.shift()));
     } else if(que[0] === '+'){
+      que.shift();
       stack.push(parseInt(stack.shift()) + parseInt(stack.shift()));
     } else if(que[0] === '-'){
+      que.shift();
       stack.push(parseInt(stack.shift()) - parseInt(stack.shift()));
     }
   }
-  console.log(que);
+  console.log(stack[0]);
 }
 
 function signPresidence (sign){ // assigns signs their precidence
