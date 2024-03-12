@@ -126,7 +126,8 @@ function derivCalc (equ){
           }else{que.push(stack.shift());}
         } else{
           if(stack[j] === '('){ // checks for normal (
-            stack.shift(); 
+            stack.pop(); 
+            console.log("hiya");
           } else{que.push(stack.shift());} // adds everything between itself and and the top of stack to que then deletes both()
         }
       }
@@ -136,12 +137,17 @@ function derivCalc (equ){
         i +=3;
       }
     }
+    // console.log(stack);
   }
-  for(i in stack){
+  // console.log(stack);
+  for(let i = 0;i<stack.length;i++){
     que.push(stack.shift()); // moves all stack into que
-  }
+  } 
+  que.push(stack.shift());
   //Post fix stack evaluator
   while(que.length!=0){
+    console.log("que:" + que);
+    console.log("Stack:"+stack);
     if(!isNaN(parseInt(que[0]))){
       stack.push(que.shift());
     } else if(que[0] === '*'){
