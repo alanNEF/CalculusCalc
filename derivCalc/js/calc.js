@@ -141,11 +141,13 @@ function derivCalc (equ){
   for(let i = 0;i<stack.length;i++){
     que.push(stack.shift()); // moves all stack into que
   } 
-  que.push(stack.shift());
+  console.log(que);
+  // que.push(stack.shift());
   //Post fix stack evaluator
   while(que.length!=0){
     // console.log("que:" + que);
     // console.log("Stack:"+stack);
+    // console.log(que.length);
     if(!isNaN(parseInt(que[0]))){ // checks if que has a number or an operator
       stack.push(que.shift());
     } else if(que[0] === '*'){ // does proper operation
