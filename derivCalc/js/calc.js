@@ -148,9 +148,9 @@ function derivCalc (equ){
   while(que.length!=0){
     console.log("que:" + que);
     console.log("Stack:"+stack);
-    if(!isNaN(parseInt(que[0]))){
+    if(!isNaN(parseInt(que[0]))){ // checks if que has a number or an operator
       stack.push(que.shift());
-    } else if(que[0] === '*'){
+    } else if(que[0] === '*'){ // does proper operation
       que.shift();
       stack.push(parseInt(stack.shift()) * parseInt(stack.shift()));
     } else if(que[0] === '/'){
@@ -181,4 +181,4 @@ function signPresidence (sign){ // assigns signs their precidence
     return null;
   }
 }
-derivCalc("(5*4+3)-1");
+derivCalc("5*4+3-1");
