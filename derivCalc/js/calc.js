@@ -109,10 +109,10 @@ function derivCalc (equ){
     } else if(equ[i] === '('){
       stack.unshift(equ[i]); // adds ( straight to stack)
     } else if(equ[i] === '+' || equ[i] === '-' || equ[i] === '/' || equ[i] === '*' || equ[i] === '^'){
-      if(signPresidence(equ[i]) > signPresidence(stack[0]) || signPresidence(equ[i]) === signPresidence(stack[0]) || stack[0] === undefined){ // if the sign on top of stack has less precidence than the current sign it adds it to stack
+      if(signPresidence(equ[i]) > signPresidence(stack[0]) || stack[0] === undefined){ // if the sign on top of stack has less precidence than the current sign it adds it to stack
         stack.unshift(equ[i]);
       } else {
-        while(!(signPresidence(equ[i]) > signPresidence(stack[0]) || signPresidence(equ[i]) === signPresidence(stack[0]) || stack[0] === undefined)){ //if the sign on top of stack has more precidence than the current sign it pushes the top sign until thats not the case
+        while(signPresidence(equ[i]) < signPresidence(stack[0]) || signPresidence(equ[i]) === signPresidence(stack[0]) || stack[0] != undefined){ //if the sign on top of stack has more precidence than the current sign it pushes the top sign until thats not the case
           que.push(stack.shift());
         }
         stack.unshift(equ[i]); // adds higher precidence sign to top of stack
@@ -137,17 +137,15 @@ function derivCalc (equ){
         i +=3;
       }
     }
-    // console.log(stack);
   }
-  // console.log(stack);
   for(let i = 0;i<stack.length;i++){
     que.push(stack.shift()); // moves all stack into que
   } 
   que.push(stack.shift());
   //Post fix stack evaluator
   while(que.length!=0){
-    console.log("que:" + que);
-    console.log("Stack:"+stack);
+    // console.log("que:" + que);
+    // console.log("Stack:"+stack);
     if(!isNaN(parseInt(que[0]))){ // checks if que has a number or an operator
       stack.push(que.shift());
     } else if(que[0] === '*'){ // does proper operation
@@ -164,7 +162,7 @@ function derivCalc (equ){
       stack.push(parseInt(stack.shift()) - parseInt(stack.shift()));
     }
   }
-  console.log(stack[0]);
+  console.log("s"+stack[0]);
 }
 
 function signPresidence (sign){ // assigns signs their precidence
