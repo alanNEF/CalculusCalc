@@ -121,20 +121,21 @@ function derivCalc (equ){
         stack.push(equ[i]); // adds higher precidence sign to top of stack
       }
     } else if(equ[i] === ')'){
-      for(let j = 0; j<stack.length;j++){ // loops through stack
-        console.log(stack[stack.length-(1+j)]);
+      console.log("hiya");
+      // for(let j = 0; j<stack.length;j++){ // loops through stack
+      while(stack[stack.length-1] != '('){
+        // console.log(stack[stack.length-(1+j)]);
         if(stack.includes("sin(")){ // checks if it include sign
-          if(stack[j]==="sin("){ // adds sign and all stack between to que
+          if(stack[stack.length-1]==="sin("){ // adds sign and all stack between to que
             que.push(stack.shift()); 
             que.push(')');
           }else{que.push(stack.shift());}
         } else{
-          if(stack[stack.length-(1+j)] === '('){ // checks for normal (
-            console.log("hiya");
-            stack.pop(); 
+          if(stack[stack.length-1] === '('){ // checks for normal (
           } else{que.unshift(stack.pop());} // adds everything between itself and and the top of stack to que then deletes both()
         }
       }
+      stack.pop(); 
     } else if(equ[i] === 's'){
       if(equ.substring(i, i+3) === "sin"){ // sin is treated as its own term and added to stack
         stack.unshift('sin(');
