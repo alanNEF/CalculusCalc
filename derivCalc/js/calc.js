@@ -105,7 +105,7 @@ function derivCalc (equ){
           i++;
         } else{break;} // checks if num is more than one digit
       }
-      que.unshift(parseInt(term)); // insantly adds digit to que
+      que.push(parseInt(term)); // insantly adds digit to que
     } else if(equ[i] === '('){
       stack.push(equ[i]); // adds ( straight to stack)
     } else if(equ[i] === '+' || equ[i] === '-' || equ[i] === '/' || equ[i] === '*' || equ[i] === '^'){
@@ -116,15 +116,12 @@ function derivCalc (equ){
           if(stack[stack.length-1] === '('){
             break;
           }
-          que.unshift(stack.pop());
+          que.push(stack.pop());
         }
         stack.push(equ[i]); // adds higher precidence sign to top of stack
       }
     } else if(equ[i] === ')'){
-      console.log("hiya");
-      // for(let j = 0; j<stack.length;j++){ // loops through stack
       while(stack[stack.length-1] != '('){
-        // console.log(stack[stack.length-(1+j)]);
         if(stack.includes("sin(")){ // checks if it include sign
           if(stack[stack.length-1]==="sin("){ // adds sign and all stack between to que
             que.push(stack.shift()); 
@@ -132,7 +129,7 @@ function derivCalc (equ){
           }else{que.push(stack.shift());}
         } else{
           if(stack[stack.length-1] === '('){ // checks for normal (
-          } else{que.unshift(stack.pop());} // adds everything between itself and and the top of stack to que then deletes both()
+          } else{que.push(stack.pop());} // adds everything between itself and and the top of stack to que then deletes both()
         }
       }
       stack.pop(); 
@@ -142,34 +139,35 @@ function derivCalc (equ){
         i +=3;
       }
     }
-    console.log("S:"+stack);
-    console.log("Q:"+que);
-    console.log();
+    // console.log("S:"+stack);
+    // console.log("Q:"+que);
+    // console.log();
   }
-  for(let i = 0;i<stack.length;i++){
-    que.unshift(stack.pop()); // moves all stack into que
+  // for(let i = 0;i<stack.length;i++){
+  while(stack.length != 0){
+    que.push(stack.pop()); // moves all stack into que
   } 
-  // console.log(que);
-  // que.push(stack.shift());
   //Post fix stack evaluator
+  console.log("que:" + que);
+  console.log("Stack:"+stack);
   while(que.length!=0){
-    // console.log("que:" + que);
-    // console.log("Stack:"+stack);
     // console.log(que.length);
+    let a,b;
     if(!isNaN(parseInt(que[0]))){ // checks if que has a number or an operator
       stack.push(que.shift());
     } else if(que[0] === '*'){ // does proper operation
       que.shift();
-      stack.push(parseInt(stack.pop()) * parseInt(stack.pop()));
+      stack.push(parseInt(stack.splice(stack.length-2,1)) * parseInt(stack.pop()));
     } else if(que[0] === '/'){
       que.shift();
-      stack.push(parseInt(stack.pop()) / parseInt(stack.pop()));
+
+      stack.push(parseInt(stack.splice(stack.length-2,1)) / parseInt(stack.pop()));
     } else if(que[0] === '+'){
       que.shift();
-      stack.push(parseInt(stack.pop()) + parseInt(stack.pop()));
+      stack.push(parseInt(stack.splice(stack.length-2,1)) + parseInt(stack.pop()));
     } else if(que[0] === '-'){
       que.shift();
-      stack.push(parseInt(stack.pop()) - parseInt(stack.pop()));
+      stack.push(parseInt(stack.splice(stack.length-2,1)) - parseInt(stack.pop()));
     }
   }
   console.log("s"+stack[0]);
