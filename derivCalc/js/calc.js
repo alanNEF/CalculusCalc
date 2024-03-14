@@ -139,20 +139,12 @@ function derivCalc (equ){
         i +=3;
       }
     }
-    // console.log("S:"+stack);
-    // console.log("Q:"+que);
-    // console.log();
   }
-  // for(let i = 0;i<stack.length;i++){
   while(stack.length != 0){
     que.push(stack.pop()); // moves all stack into que
   } 
   //Post fix stack evaluator
-  console.log("que:" + que);
-  console.log("Stack:"+stack);
   while(que.length!=0){
-    // console.log(que.length);
-    let a,b;
     if(!isNaN(parseInt(que[0]))){ // checks if que has a number or an operator
       stack.push(que.shift());
     } else if(que[0] === '*'){ // does proper operation
@@ -170,7 +162,7 @@ function derivCalc (equ){
       stack.push(parseInt(stack.splice(stack.length-2,1)) - parseInt(stack.pop()));
     }
   }
-  console.log("s"+stack[0]);
+  return stack[0];
 }
 
 function signPresidence (sign){ // assigns signs their precidence
