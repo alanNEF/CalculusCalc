@@ -128,11 +128,10 @@ function derivCalc (equ){
             que.push(')');
           }else{que.push(stack.shift());}
         } else{
-          if(stack[stack.length-1] === '('){ // checks for normal (
-          } else{que.push(stack.pop());} // adds everything between itself and and the top of stack to que then deletes both()
+          que.push(stack.pop()); // pushes until it finds a (
         }
       }
-      stack.pop(); 
+      stack.pop(); //removes the parenthesis
     } else if(equ[i] === 's'){
       if(equ.substring(i, i+3) === "sin"){ // sin is treated as its own term and added to stack
         stack.unshift('sin(');
@@ -149,10 +148,9 @@ function derivCalc (equ){
       stack.push(que.shift());
     } else if(que[0] === '*'){ // does proper operation
       que.shift();
-      stack.push(parseInt(stack.splice(stack.length-2,1)) * parseInt(stack.pop()));
+      stack.push(parseInt(stack.splice(stack.length-2,1)) * parseInt(stack.pop())); //puts the top item as second term and next top as first term then evaluates and pushs to stack
     } else if(que[0] === '/'){
       que.shift();
-
       stack.push(parseInt(stack.splice(stack.length-2,1)) / parseInt(stack.pop()));
     } else if(que[0] === '+'){
       que.shift();
@@ -162,7 +160,7 @@ function derivCalc (equ){
       stack.push(parseInt(stack.splice(stack.length-2,1)) - parseInt(stack.pop()));
     }
   }
-  return stack[0];
+  return stack[0]; //returns the result
 }
 
 function signPresidence (sign){ // assigns signs their precidence
@@ -176,4 +174,4 @@ function signPresidence (sign){ // assigns signs their precidence
     return null;
   }
 }
-derivCalc("1+(5*4+3)-1");
+console.log(derivCalc("1+(50*14+3)-1"));
