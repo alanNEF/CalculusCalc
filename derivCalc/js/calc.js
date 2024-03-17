@@ -135,10 +135,23 @@ function derivCalc (equ){
     } else if(equ[i] === 's'){
       if(equ.substring(i, i+3) === "sin"){ // sin is treated as its own term and added to stack
         stack.unshift('sin(');
-        i +=3;
+        i+=3;
+      }
+    } else if(equ[i] != 'x'){
+      if(equ[i-1] === '*'){
+        if(signPresidence('*') > signPresidence(stack[stack.length-1]) || stack[stack.length-1] === undefined){ // if the sign on top of stack has less precidence than the current sign it adds it to stack
+          stack.push('*');
+        } else {
+          while(signPresidence('*') < signPresidence(stack[stack.length-1]) || signPresidence('*') === signPresidence(stack[stack.length-1]) || stack[stack.length-1] != undefined){ //if the sign on top of stack has more precidence than the current sign it pushes the top sign until thats not the case
+            if(stack[stack.length-1] === '('){
+              break;
+            }
+            que.push(stack.pop());
+          }
+          stack.push('*'); // adds higher precidence sign to top of stack
+        }
       }
     }
-  }
   while(stack.length != 0){
     que.push(stack.pop()); // moves all stack into que
   } 
@@ -160,7 +173,8 @@ function derivCalc (equ){
       stack.push(parseInt(stack.splice(stack.length-2,1)) - parseInt(stack.pop()));
     }
   }
-  return stack[0]; //returns the result
+    return stack[0]; //returns the result
+  }
 }
 
 function signPresidence (sign){ // assigns signs their precidence
