@@ -38,6 +38,7 @@ button:hover{
                     #ff6b08, #cf23cf, #eedd44); 
             -webkit-text-fill-color: transparent; 
             -webkit-background-clip: text; 
+                    background-clip: text;
     text-decoration: underline;
     line-height: 150%;
 }
