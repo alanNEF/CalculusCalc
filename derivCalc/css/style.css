@@ -64,7 +64,7 @@ button:hover{
     border-color: aliceblue;
     padding-bottom: 1%;
     padding-left: 1%;
-    padding-right: 1%;
+    padding-right: 2%;
 }
 .calcInfo{
     display: inline-block;
