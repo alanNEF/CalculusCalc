@@ -1,6 +1,22 @@
 const select = (selector) => document.querySelector(selector)
 const form = select('.calculator');
 
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if(true){
+    fetch('http://localhost:5500/api/create',{
+      method:'Post',
+      body: {
+        func: ''
+      } ,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+  console.log('form is submitting');
+});
+
 function deriv (equ){
   const equArray = []; // array of terms in the equation
   const equSigns = []; //array of signs of each term
