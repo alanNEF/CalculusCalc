@@ -1,8 +1,6 @@
-function calculate(){
-  let func = document.getElementById("function").value;
-  console.log(func)
-  document.getElementById("result").innerText = calc(func); 
-}
+const select = (selector) => document.querySelector(selector)
+const form = select('.calculator');
+
 function deriv (equ){
   const equArray = []; // array of terms in the equation
   const equSigns = []; //array of signs of each term
