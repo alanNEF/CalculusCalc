@@ -13,6 +13,13 @@ const postData = async (data) => {
     method:'POST',
     body: data,
   });
+
+  if(result.ok){
+    const response = await result.json()
+    if(response.success){
+      document.getElementById("result").innerText = response.ans; 
+    }
+  }
 };
 
 function deriv (equ){
