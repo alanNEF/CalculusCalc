@@ -1,7 +1,7 @@
 const select = (selector) => document.querySelector(selector)
 const form = select('.calculator');
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(form);
   await postData(formData);
