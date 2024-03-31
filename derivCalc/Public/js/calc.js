@@ -8,7 +8,12 @@ form.addEventListener('submit', (e) => {
   console.log('form is submitting');
 });
 
-
+const postData = async (data) => {
+  const result = await fetch('http://localhost:5500/api/create', {
+    method:'POST',
+    body: data,
+  });
+};
 
 function deriv (equ){
   const equArray = []; // array of terms in the equation
