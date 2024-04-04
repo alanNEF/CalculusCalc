@@ -14,13 +14,13 @@
     <div class="calculator">
       <div class="calcContainer">
         <div class = "calcInfo">
-        <form action="text">
+        <form action="text" class="calculator-input" enctype="multipart/form-data">
           <label for="function">Function:</label><br>
-          <input class="input-text" type="text" id="function" value="x^5+7x^4+8x^2-4" placeholder="Type Function Here"><br>
-        </form> 
-        <button onclick="calculate()" id="button-submit">Calculate</button> <br>
+          <input class="input-text" type="text" id="func" name="function" value="x^5+7x^4+8x^2-4" placeholder="Type Function Here" onkeypress="calculate()"><br>
+          <input type="submit" id="button-submit" value="Calculate">
+        </form><br>
       </div>
-    </div> <br>
+    </div><br>
     <div class="calcContainer">
       <div class="calcInfo">
         <label for="Answer">Answer:</label><br>
@@ -28,7 +28,7 @@
       </div>
     </div>
   </div>
-    <script src="../js/calc.js"></script>
+    <script src="./js/calc.js"></script>
   </body>
-  <style src="../css/style.css"></style>
+  <!-- <style src="./css/style.css"></style> -->
   </html>

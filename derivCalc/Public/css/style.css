@@ -28,7 +28,7 @@ button:hover{
 
 @keyframes button-hover {
     from{background-color: aliceblue;}
-    to{background-color:#ff6b08;}
+    to{background-color:#ffa162;}
 }
 #PageName{
     font-family: Arial, Helvetica, sans-serif;
@@ -38,6 +38,7 @@ button:hover{
                     #ff6b08, #cf23cf, #eedd44); 
             -webkit-text-fill-color: transparent; 
             -webkit-background-clip: text; 
+                    background-clip: text;
     text-decoration: underline;
     line-height: 150%;
 }
@@ -63,7 +64,7 @@ button:hover{
     border-color: aliceblue;
     padding-bottom: 1%;
     padding-left: 1%;
-    padding-right: 1%;
+    padding-right: 2%;
 }
 .calcInfo{
     display: inline-block;
