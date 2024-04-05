@@ -41,7 +41,21 @@ function toTex(exp) {
       // console.log(res);
       // console.log(exp.replace(sub,res));
       exp = exp.replace(sub,res);
-    }
+    } else if(exp.charAt(i) === '^'){
+      exp = exp.slice(0,i+1) + '{' + exp.slice(i+1);
+      if(exp.charAt(i+2) === '('){
+        i += 2;
+        let numL = 1, numR = 0;
+        while(numL!=numR){
+          i++;
+          if(exp.charAt(i) === '('){
+            numL++;
+          } else if(exp.charAt(i) === ')'){
+            numR++;
+          }
+        }
+      }
+      console.log(exp);
   }
 }
 
