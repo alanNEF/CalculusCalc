@@ -22,6 +22,31 @@ const postData = async (data) => {
   }
 };
 
+function toTex(exp) {
+  for(let i = 0; i<exp.length; i++){
+    if(exp.charAt(i) === '/'){
+      let temp = i, start, end;
+      while(exp.charAt(i) != '('){
+        i--;
+      }
+      start = i, i = temp;
+      while(exp.charAt(i) != ')'){
+        i++;
+      }
+      end = i+1, i = temp,sub = exp.substring(start, end), res = exp.substring(start, end);
+      res = res.replace('(', "\\frac{");
+      res = res.replace(')', "}");
+      res = res.replace('/', "}{");
+      // console.log(exp.substring(start, end));
+      // console.log(res);
+      // console.log(exp.replace(sub,res));
+      exp = exp.replace(sub,res);
+    }
+  }
+}
+
+
+
 function formatEditor(equ){
   let out = "";
   const equTerms = []; //array of terms in the equation
