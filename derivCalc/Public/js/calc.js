@@ -56,6 +56,7 @@ function toTex(exp) {
         }
       }
       console.log(exp);
+    }
   }
 }
 
