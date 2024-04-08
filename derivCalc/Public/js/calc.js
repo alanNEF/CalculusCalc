@@ -17,7 +17,8 @@ const postData = async (data) => {
   if(result.ok){
     const response = await result.json()
     if(response.success){
-      document.getElementById("result").innerText = response.ans; 
+      document.getElementById("result").innerHTML = `\\(${toTex(response.ans)}\\)`; 
+      MathJax.typeset();
     }
   }
 };
