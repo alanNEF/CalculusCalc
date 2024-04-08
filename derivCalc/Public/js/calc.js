@@ -43,6 +43,7 @@ function toTex(exp) {
       exp = exp.replace(sub,res);
     } else if(exp.charAt(i) === '^'){
       exp = exp.slice(0,i+1) + '{' + exp.slice(i+1);
+      let initI = i;
       if(exp.charAt(i+2) === '('){
         i += 2;
         let numL = 1, numR = 0;
@@ -63,6 +64,18 @@ function toTex(exp) {
         exp = exp.slice(0,i) + '}' + exp.slice(i);
       }
       i = initI;
+      exp = exp.replaceAll('sin', '\\sin');
+      exp = exp.replaceAll('cos', '\\cos');
+      exp = exp.replaceAll('tan', '\\tan');
+      exp = exp.replaceAll('csc', '\\csc');
+      exp = exp.replaceAll('sec', '\\sec');
+      exp = exp.replaceAll('cot', '\\cot');
+      exp = exp.replaceAll('asin', '\\arcsin');
+      exp = exp.replaceAll('acos', '\\arccos');
+      exp = exp.replaceAll('atan', '\\arctan');
+      exp = exp.replaceAll('acsc', '\\arccsc');
+      exp = exp.replaceAll('asec', '\\arcsec');
+      exp = exp.replaceAll('acot', '\\arccot');
       return exp;
     }
   }
