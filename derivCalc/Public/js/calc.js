@@ -62,7 +62,8 @@ function toTex(exp) {
         }
         exp = exp.slice(0,i) + '}' + exp.slice(i);
       }
-      console.log(exp);
+      i = initI;
+      return exp;
     }
   }
 }
