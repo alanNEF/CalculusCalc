@@ -17,10 +17,72 @@ const postData = async (data) => {
   if(result.ok){
     const response = await result.json()
     if(response.success){
-      document.getElementById("result").innerText = response.ans; 
+      document.getElementById("result").innerHTML = `\\(${toTex(response.ans)}\\)`; 
+      MathJax.typeset();
     }
   }
 };
+
+function toTex(exp) {
+  for(let i = 0; i<exp.length; i++){
+    if(exp.charAt(i) === '/'){
+      let temp = i, start, end;
+      while(exp.charAt(i) != '('){
+        i--;
+      }
+      start = i, i = temp;
+      while(exp.charAt(i) != ')'){
+        i++;
+      }
+      end = i+1, i = temp,sub = exp.substring(start, end), res = exp.substring(start, end);
+      res = res.replace('(', "\\frac{");
+      res = res.replace(')', "}");
+      res = res.replace('/', "}{");
+      // console.log(exp.substring(start, end));
+      // console.log(res);
+      // console.log(exp.replace(sub,res));
+      exp = exp.replace(sub,res);
+    } else if(exp.charAt(i) === '^'){
+      exp = exp.slice(0,i+1) + '{' + exp.slice(i+1);
+      let initI = i;
+      if(exp.charAt(i+2) === '('){
+        i += 2;
+        let numL = 1, numR = 0;
+        while(numL!=numR){
+          i++;
+          if(exp.charAt(i) === '('){
+            numL++;
+          } else if(exp.charAt(i) === ')'){
+            numR++;
+          }
+        }
+        exp = exp.slice(0,i+1) + '}' + exp.slice(i+1);
+      } else{
+        i += 2;
+        while(!isNaN(parseInt(exp.charAt(i)))){
+          i++;
+        }
+        exp = exp.slice(0,i) + '}' + exp.slice(i);
+      }
+      i = initI;
+      exp = exp.replaceAll('sin', '\\sin');
+      exp = exp.replaceAll('cos', '\\cos');
+      exp = exp.replaceAll('tan', '\\tan');
+      exp = exp.replaceAll('csc', '\\csc');
+      exp = exp.replaceAll('sec', '\\sec');
+      exp = exp.replaceAll('cot', '\\cot');
+      exp = exp.replaceAll('asin', '\\arcsin');
+      exp = exp.replaceAll('acos', '\\arccos');
+      exp = exp.replaceAll('atan', '\\arctan');
+      exp = exp.replaceAll('acsc', '\\arccsc');
+      exp = exp.replaceAll('asec', '\\arcsec');
+      exp = exp.replaceAll('acot', '\\arccot');
+      return exp;
+    }
+  }
+}
+
+
 
 function formatEditor(equ){
   let out = "";
