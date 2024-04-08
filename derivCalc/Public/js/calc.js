@@ -54,6 +54,7 @@ function toTex(exp) {
             numR++;
           }
         }
+        exp = exp.slice(0,i+1) + '}' + exp.slice(i+1);
       }
       console.log(exp);
     }
