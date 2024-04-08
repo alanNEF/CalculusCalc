@@ -55,6 +55,12 @@ function toTex(exp) {
           }
         }
         exp = exp.slice(0,i+1) + '}' + exp.slice(i+1);
+      } else{
+        i += 2;
+        while(!isNaN(parseInt(exp.charAt(i)))){
+          i++;
+        }
+        exp = exp.slice(0,i) + '}' + exp.slice(i);
       }
       console.log(exp);
     }
