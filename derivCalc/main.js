@@ -1,14 +1,15 @@
-const http = require('http');
 const express = require('express');
 const app = express();
-const mainRouter = require('./Backend/routers/index');
+const devRouter = require('./Backend/routers/index');
+const intRouter = require('./Backend/routers/integralRouter')
 
 const port = 5500;
 
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api',mainRouter);
+app.use('/dev', devRouter);
+app.use('/int', intRouter);
 
 app.listen(port, () => {
   console.log('Port is Listening.');
