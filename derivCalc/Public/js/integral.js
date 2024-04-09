@@ -9,7 +9,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 const postData = async (data) => {
-  const result = await fetch('http://localhost:5500/dev/createdev', {
+  const result = await fetch('http://localhost:5500/int/createint', {
     method:'POST',
     body: data,
   });
