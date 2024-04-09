@@ -9,7 +9,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 const postData = async (data) => {
-  const result = await fetch('http://localhost:5500/api/create', {
+  const result = await fetch('http://localhost:5500/dev/createdev', {
     method:'POST',
     body: data,
   });
@@ -65,21 +65,23 @@ function toTex(exp) {
         exp = exp.slice(0,i) + '}' + exp.slice(i);
       }
       i = initI;
-      exp = exp.replaceAll('sin', '\\sin');
-      exp = exp.replaceAll('cos', '\\cos');
-      exp = exp.replaceAll('tan', '\\tan');
-      exp = exp.replaceAll('csc', '\\csc');
-      exp = exp.replaceAll('sec', '\\sec');
-      exp = exp.replaceAll('cot', '\\cot');
-      exp = exp.replaceAll('asin', '\\arcsin');
-      exp = exp.replaceAll('acos', '\\arccos');
-      exp = exp.replaceAll('atan', '\\arctan');
-      exp = exp.replaceAll('acsc', '\\arccsc');
-      exp = exp.replaceAll('asec', '\\arcsec');
-      exp = exp.replaceAll('acot', '\\arccot');
-      return exp;
     }
   }
+  exp = exp.replaceAll('sin', '\\sin');
+  exp = exp.replaceAll('cos', '\\cos');
+  exp = exp.replaceAll('tan', '\\tan');
+  exp = exp.replaceAll('csc', '\\csc');
+  exp = exp.replaceAll('sec', '\\sec');
+  exp = exp.replaceAll('cot', '\\cot');
+  exp = exp.replaceAll('asin', '\\arcsin');
+  exp = exp.replaceAll('acos', '\\arccos');
+  exp = exp.replaceAll('atan', '\\arctan');
+  exp = exp.replaceAll('acsc', '\\arccsc');
+  exp = exp.replaceAll('asec', '\\arcsec');
+  exp = exp.replaceAll('acot', '\\arccot');
+  exp = exp.replaceAll('log', '\\ln');
+  exp = exp.replaceAll('*', '');
+  return exp;
 }
 
 
